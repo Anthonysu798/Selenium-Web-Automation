@@ -12,14 +12,25 @@ driver = webdriver.Chrome(service=service)
 # Open chrome and go to this link
 driver.get("https://orteil.dashnet.org/cookieclicker/")
 
-WebDriverWait(driver, 5).until(
-    EC.presence_of_all_elements_located((By.XPATH, "//*[contains(text(), 'English')]")) 
-)
-
-language = driver.find(By.XPATH, "//*[contains(text(), 'English')]")
-language.click()
-
+# The id of cookie button
 cookie_id = "bigCookie"
 
+# The amount of cookies id
+cookies_id = "cookies"
+
+WebDriverWait(driver, 5).until(
+    EC.presence_of_all_elements_located((By.XPATH, "//*[contains(text(), 'English')]"))
+)
+
+language = driver.find_element(By.XPATH, "//*[contains(text(), 'English')]")
+language.click()
+
+WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.ID, cookie_id)))
+
 cookie = driver.find_element(By.ID, cookie_id)
-cookie.click()
+
+while True:
+    cookie.click()
+    cookies_count = driver.find_element(By.ID, cookies_id).text.split(" ")[0]
+    cookies_count = int(cookies_count.replace(",", "")) # Replace all cookies command with an empty string
+    print(cookies_count)
