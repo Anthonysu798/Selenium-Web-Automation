@@ -9,11 +9,11 @@ driver = webdriver.Chrome(service=service)
 driver.get("https://google.com")
 
 # Get element className
-input_element = driver.get_element(By.CLASS_NAME, "gLFyf")
+input_element = driver.find_element(By.CLASS_NAME, "gLFyf")
 
 # Now send the key to that element
 input_element.send_keys("Tech with Anthony Su")
 
-time.sleep(10) # Sleep for 10 sec
+time.sleep(4) # Sleep for 10 sec
 
 driver.quit()
