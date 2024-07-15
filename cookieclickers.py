@@ -18,7 +18,7 @@ cookie_id = "bigCookie"
 # The amount of cookies id
 cookies_id = "cookies"
 
-WebDriverWait(driver, 5).until(
+WebDriverWait(driver, 10).until(
     EC.presence_of_all_elements_located((By.XPATH, "//*[contains(text(), 'English')]"))
 )
 
